@@ -1,13 +1,10 @@
 package SpringApi.rest.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -66,8 +63,19 @@ public class JWTUtil {
      * @return
      */
     public String getKey(String jwt) {
+// Verificar si el token tiene exactamente dos períodos ('.')
+        if (jwt != null && StringUtils.countMatches(jwt, ".") == 2) {
+            try {
         Jws<Claims> claims = Jwts.parser().setSigningKey(getSigningKey()).parseClaimsJws(jwt);
         return claims.getBody().getId();
+            } catch (MalformedJwtException e) {
+                // Manejar la excepción de token con formato incorrecto
+                return "Token con formato incorrecto";
+            }
+        } else {
+            // Manejar el caso de un token con formato incorrecto
+            return "Token con formato incorrecto";
+        }
     }
 
     private Key getSigningKey() {

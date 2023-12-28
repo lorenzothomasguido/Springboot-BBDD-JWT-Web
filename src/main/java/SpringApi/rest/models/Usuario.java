@@ -8,7 +8,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @Table(name = "usuarios")
-//@ToString
 @EqualsAndHashCode
 public class Usuario {
 
@@ -20,8 +19,8 @@ public class Usuario {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellido")
-    private String apellido;
+    @Column(name = "cargo")
+    private String cargo;
 
     @Column(name = "email")
     private String email;

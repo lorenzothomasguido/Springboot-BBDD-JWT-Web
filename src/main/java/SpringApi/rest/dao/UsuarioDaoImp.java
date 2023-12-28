@@ -1,6 +1,5 @@
 package SpringApi.rest.dao;
 
-
 import SpringApi.rest.models.Usuario;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -10,11 +9,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-
 @Repository
 @Transactional
-public class UsuarioDaoImp implements UsuarioDao {
+public class UsuarioDaoImp implements SpringApi.rest.dao.UsuarioDao {
+
+
+
 
     @PersistenceContext
     EntityManager entityManager;

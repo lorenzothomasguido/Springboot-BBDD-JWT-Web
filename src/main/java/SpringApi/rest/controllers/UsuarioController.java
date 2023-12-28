@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
 public class UsuarioController {
 
@@ -44,9 +46,9 @@ public class UsuarioController {
 
     @RequestMapping(value = "api/usuarios/{id}", method = RequestMethod.DELETE)
     public void eliminar(@RequestHeader(value="Authorization") String token,
-                          @PathVariable Long id) {
+                         @PathVariable Long id) {
         if (!validarToken(token)) { return; }
-       usuarioDao.eliminar(id);
+        usuarioDao.eliminar(id);
     }
 
 }
